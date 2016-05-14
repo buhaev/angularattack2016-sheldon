@@ -1,41 +1,49 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, ApplicationRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
-import { StorageService } from '../storage/storage.service';
-import { RequestService } from '../request/request.service';
+const CLIENT_ID = '791129784228-uiaq4sl4km3q3b9buaj99q167sg4g16b.apps.googleusercontent.com';
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 
 @Injectable()
 export class UserService {
 
   _loggedIn = new BehaviorSubject(false);
 
-  constructor(http: Http, storage: StorageService, request: RequestService) {
-    this._http = http;
-    this._storage = storage;
-    this._request = request;
+  constructor(@Inject('gapi') gapi, applicationRef: ApplicationRef) {
+    this._gapi = gapi;
 
-    if (!!this._storage.getAuthToken()) {
-      this._loggedIn.next(true);
-    }
+    gapi.auth.authorize({
+      'client_id': CLIENT_ID,
+      'scope': SCOPES.join(' '),
+      'immediate': true
+    }, (authResult) => {
+      this.handleAuthResult(authResult);
+      applicationRef.tick();
+    });
   }
 
-  login(credentials) {
-    return this._http
-      .post('/login', JSON.stringify(credentials), { headers: this._request.getJsonHeaders() })
-      .map(res => res.json())
-      .map((res) => {
-        if (res.success) {
-          this._storage.setAuthToken(res.auth_token);
-          this._loggedIn.next(true);
-        }
+  handleAuthResult(authResult) {
+    var result = Boolean(authResult && !authResult.error);
+    console.log('auth result: ', result);
+    this._loggedIn.next(result);
+    return result;
+  }
 
-        return res.success;
+  login() {
+    return new Promise((resolve) => {
+      this._gapi.auth.authorize({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        immediate: false
+      }, (authResult) => {
+        resolve(this.handleAuthResult(authResult));
       });
+    });
   }
 
   logout() {
-    this._storage.removeAuthToken();
     this._loggedIn.next(false);
   }
 

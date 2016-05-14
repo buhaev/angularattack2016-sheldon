@@ -20,5 +20,6 @@ bootstrap(AppComponent, [
   AUTH_PROVIDERS,
   POSTS_PROVIDERS,
   provide(LocationStrategy, { useClass: HashLocationStrategy }),
-  provide('ENVIRONMENT', { useValue: ENVIRONMENT })
+  provide('ENVIRONMENT', { useValue: ENVIRONMENT }),
+  provide('gapi', { useValue: window.gapi })
 ]);

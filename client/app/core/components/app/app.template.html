@@ -4,6 +4,28 @@
 
 <div class="container body-container">
     <router-outlet></router-outlet>
+
+    <md-toolbar color="primary">
+        Angular Material 2 App
+    </md-toolbar>
+
+    <div style="padding: 7px">
+        <button md-button>Basic Button</button>
+        <button md-raised-button>Raised Button</button>
+    </div>
+
+    <div>
+        <md-checkbox [checked]="checked"
+                     (change)="checked = $event">
+            Checkbox
+        </md-checkbox>
+    </div>
+    <div>
+        <md-input placeholder="amount" align="end">
+            <span md-prefix>$&nbsp;</span>
+            <span md-suffix>.00</span>
+        </md-input>
+    </div>
 </div>
 
 <footer class="footer">
