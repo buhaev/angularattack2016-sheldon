@@ -6,7 +6,7 @@ const config = require('./config').client;
 
 module.exports = function (singleRun) {
   return function () {
-    let gulpStream = gulp.src('./client/style.sass').pipe(sass());
+    let gulpStream = gulp.src('./client/sass/style.sass').pipe(sass());
 
     if (singleRun) {
       gulpStream = gulpStream.pipe(cssnano());
