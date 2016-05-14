@@ -1,5 +1,12 @@
 .idea
 node_modules
 npm-debug.log
+.DS_Store
+*~
+\#*
+.#*
+build
+cov
+lib
 dist
 coverage
