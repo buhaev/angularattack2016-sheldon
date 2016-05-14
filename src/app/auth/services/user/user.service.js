@@ -13,6 +13,7 @@ export class UserService {
 
   constructor(@Inject('gapi') gapi, applicationRef: ApplicationRef) {
     this._gapi = gapi;
+    console.log(this._gapi);
 
     gapi.auth.authorize({
       'client_id': CLIENT_ID,
