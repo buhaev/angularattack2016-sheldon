@@ -13,18 +13,13 @@ import { validatorFactory } from '../../../posts/validator';
 })
 export class LoginComponent {
 
-  constructor(userService: UserService, builder: FormBuilder, router: Router) {
+  constructor(userService: UserService, router: Router) {
     this._userService = userService;
     this._router = router;
-
-    this.loginForm = builder.group({
-      email: ['', Validators.compose([Validators.required, validatorFactory('email')])],
-      password: ['', Validators.required]
-    });
   }
 
-  onSubmit(credentials) {
-    this._userService.login(credentials).subscribe((result) => {
+  authLogin() {
+    this._userService.login().then((result) => {
       if (result) {
         this._router.navigate(['List']);
       }
