@@ -1,12 +1,12 @@
 'use strict';
-let gulp = require('gulp');
-let less = require('gulp-less');
-let cssnano = require('gulp-cssnano');
-let config = require('./config').client;
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const cssnano = require('gulp-cssnano');
+const config = require('./config').client;
 
 module.exports = function (singleRun) {
   return function () {
-    let gulpStream = gulp.src('./client/boot.less').pipe(less());
+    let gulpStream = gulp.src('./client/sass/style.sass').pipe(sass());
 
     if (singleRun) {
       gulpStream = gulpStream.pipe(cssnano());
