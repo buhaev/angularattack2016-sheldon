@@ -20,6 +20,12 @@ export class MenuComponent {
     return this.userService.getLoggedIn();
   }
 
+  login() {
+    this.userService.login().then(() => {
+      this._router.navigate(['List']);
+    });
+  }
+
   logout() {
     this.userService.logout();
     this._router.navigate(['List']);
