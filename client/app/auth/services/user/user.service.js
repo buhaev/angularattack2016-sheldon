@@ -1,9 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, ApplicationRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-
-// import { RequestService } from '../request/request.service';
 
 const CLIENT_ID = '791129784228-uiaq4sl4km3q3b9buaj99q167sg4g16b.apps.googleusercontent.com';
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
@@ -13,7 +11,7 @@ export class UserService {
 
   _loggedIn = new BehaviorSubject(false);
 
-  constructor(@Inject('gapi') gapi) {
+  constructor(@Inject('gapi') gapi, applicationRef: ApplicationRef) {
     this._gapi = gapi;
 
     gapi.auth.authorize({
@@ -22,6 +20,7 @@ export class UserService {
       'immediate': true
     }, (authResult) => {
       this.handleAuthResult(authResult);
+      applicationRef.tick();
     });
   }
 
