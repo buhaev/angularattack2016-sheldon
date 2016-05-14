@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Posts <a [routerLink]="['/New']" class="btn btn-primary pull-right">New post</a></h1>
+
+        <div class="list-group">
+            <post-list-item *ngFor="let post of getRemotePosts() | async" [post]="post"></post-list-item>
+        </div>
+    </div>
+</div>
