@@ -26,6 +26,27 @@
             <span md-suffix>.00</span>
         </md-input>
     </div>
+
+    <div>
+        <!-- Simple dropdown -->
+        <span dropdown (on-toggle)="toggled($event)">
+            <a href id="simple-dropdown" dropdownToggle>
+                Click me for a dropdown, yo!
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+                <li>
+                    <a class="dropdown-item" href="#">Item 1</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Item 2</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Item 3</a>
+                </li>
+            </ul>
+        </span>
+    </div>
+
 </div>
 
 <footer class="footer">

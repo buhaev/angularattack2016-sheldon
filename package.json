@@ -5,6 +5,7 @@
   "scripts": {
     "test": "NODE_ENV=production babel src/components --out-dir lib && ./node_modules/.bin/babel-node ./test/index.js | tap-spec",
     "start": "NODE_ENV=development node server.js",
+    "start_win": "set NODE_ENV=development && node server.js",
     "build": "rimraf build && NODE_ENV=production ./node_modules/.bin/webpack",
     "travis": "npm run coveralls",
     "prepublish": "npm run build",
@@ -97,6 +98,7 @@
     "@angular2-material/toolbar": "^2.0.0-alpha.4",
     "bootstrap": "^3.3.6",
     "localStorage": "^1.0.3",
+    "ng2-bootstrap": "^1.0.16",
     "normalize.css": "^4.1.1",
     "validate.js": "^0.9.0"
   }
