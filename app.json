@@ -1,0 +1,8 @@
+{
+    "name": "Sheldon Calendar",
+    "description": "Angular Attack 2016 Sheldon App",
+    "image": "heroku/python",
+    "repository": "https://github.com/heroku/python-getting-started",
+    "keywords": ["python", "tornado" ],
+    "addons": [ "heroku-postgresql" ]
+}
