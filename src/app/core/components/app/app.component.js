@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { RouteConfig } from '@angular/router-deprecated';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import template from './app.template.html';
 import { MenuComponent } from '../menu/menu.component';
-import { LoggedInRouterOutletDirective } from '../../../auth';
+import { AppLoaderComponent } from '../app-loader/app-loader.component';
+import { LoggedInRouterOutletDirective, UserService } from '../../../auth';
 import { routes } from './router.config';
 
 import {MdButton} from '@angular2-material/button';
@@ -21,15 +23,19 @@ import {MdToolbar} from '@angular2-material/toolbar';
 @Component({
   selector: 'my-app',
   directives: [
-    LoggedInRouterOutletDirective, MenuComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput, MdList,
-    MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar 
+    LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
+    MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar
   ],
   template: template
 })
 @RouteConfig(routes)
 export class AppComponent {
-
-  constructor(@Inject('ENVIRONMENT') environment) {
+  constructor(@Inject('ENVIRONMENT') environment, userService: UserService) {
     this.environment = environment;
+    this._userService = userService;
+  }
+
+  getLoaded() {
+    return this._userService.getLoginChecked();
   }
 }

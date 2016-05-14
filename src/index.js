@@ -30,6 +30,12 @@ if (ENVIRONMENT === 'production') {
   enableProdMode();
 }
 
+const gapiPromise = new Promise(function(resolve) {
+    window.gapiLoaded = function() {
+        resolve(window.gapi);
+    };
+});
+
 function main() {
     return bootstrap(AppComponent, [
         FORM_PROVIDERS,
@@ -39,7 +45,7 @@ function main() {
         POSTS_PROVIDERS,
         provide(LocationStrategy, { useClass: HashLocationStrategy }),
         provide('ENVIRONMENT', { useValue: ENVIRONMENT }),
-        provide('gapi', { useValue: window.gapi })
+        provide('googleApi', { useValue: gapiPromise })
     ]);
 }
 
