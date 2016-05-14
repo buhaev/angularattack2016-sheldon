@@ -1,9 +1,10 @@
 {
-  "name": "Sheldon Calendar",
+  "name": "SheldonCalendar",
   "version": "0.1.0",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
+    "dev": "./node_modules/.bin/gulp serve",
     "test": "COVERAGE_ENABLED=true gulp test",
     "webdriver-update": "webdriver-manager update"
   },
@@ -17,7 +18,7 @@
     "Vitaly Glibin <glibin.v@gmail.com>",
     "Anton Kuznetsov <isnifer@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "WTFPL",
   "keywords": [
     "angular2",
     "es6",
