@@ -10,18 +10,21 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 export class UserService {
 
   _loggedIn = new BehaviorSubject(false);
+  _loginChecked = new BehaviorSubject(false);
 
-  constructor(@Inject('gapi') gapi, applicationRef: ApplicationRef) {
-    this._gapi = gapi;
-    console.log(this._gapi);
+  constructor(@Inject('googleApi') googleApi, applicationRef: ApplicationRef) {
+    this._googleApi = googleApi;
 
-    gapi.auth.authorize({
-      'client_id': CLIENT_ID,
-      'scope': SCOPES.join(' '),
-      'immediate': true
-    }, (authResult) => {
-      this.handleAuthResult(authResult);
-      applicationRef.tick();
+    googleApi.then((gapi) => {
+      gapi.auth.authorize({
+        'client_id': CLIENT_ID,
+        'scope': SCOPES.join(' '),
+        'immediate': true
+      }, (authResult) => {
+        this.handleAuthResult(authResult);
+        this._loginChecked.next(true);
+        applicationRef.tick();
+      });
     });
   }
 
@@ -34,12 +37,14 @@ export class UserService {
 
   login() {
     return new Promise((resolve) => {
-      this._gapi.auth.authorize({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
-        immediate: false
-      }, (authResult) => {
-        resolve(this.handleAuthResult(authResult));
+      this._googleApi.then((gapi) => {
+        gapi.auth.authorize({
+          client_id: CLIENT_ID,
+          scope: SCOPES,
+          immediate: false
+        }, (authResult) => {
+          resolve(this.handleAuthResult(authResult));
+        });
       });
     });
   }
@@ -54,5 +59,9 @@ export class UserService {
 
   getLoggedIn() {
     return this._loggedIn;
+  }
+
+  getLoginChecked() {
+    return this._loginChecked;
   }
 }
