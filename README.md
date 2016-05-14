@@ -1,3 +1,5 @@
+![Logo](https://cloud.githubusercontent.com/assets/1788245/15266968/53e0a3f0-19bd-11e6-86b0-41bfbb362109.png)
+
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 
 This repo is the start of your AngularAttack 2016 entry. It contains the simple [Angular2 starter](https://angular.io/docs/ts/latest/quickstart.html) files.
