@@ -12,7 +12,7 @@
             <div class="form__group form__group_inline">
                 <div class="form__group">
                     <label for="date" class="form__label">Date</label>
-                    <input type="text" name="date" class="input input_middle"
+                    <input type="date" name="date" class="input input_date"
                            id="date"
                            #date="ngForm"
                            [ngFormControl]="eventForm.controls['date']" />
@@ -72,7 +72,7 @@
         </div>
     </div>
     <div class="form__buttons">
-        <button type="submit" class="btn btn-success">Save</button>
-        <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+        <button type="submit" md-raised-button color="primary">Save</button>
+        <button type="button" md-raised-button (click)="onCancel()">Cancel</button>
     </div>
 </form>
