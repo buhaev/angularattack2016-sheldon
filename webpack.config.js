@@ -23,6 +23,12 @@ if (PRODUCTION){
                 drop_console: true,
                 screw_ie8: true
             }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(ENV.NODE_ENV) || 'development',
+            },
+            ENVIRONMENT: JSON.stringify(ENV.NODE_ENV) || 'development',
         })
     ];
 } else {
