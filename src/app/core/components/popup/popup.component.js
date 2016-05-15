@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import template from './popup.template.html';
 
-import FormEventComponent from '../form-event/form-event.component';
+import EventFormComponent from '../event-form/event-form.component';
 
 @Component({
     template,
     selector: 'popup',
-    directives: [FormEventComponent],
+    directives: [EventFormComponent],
     inputs: ['togglePopup'],
 })
 export default class PopupComponent {

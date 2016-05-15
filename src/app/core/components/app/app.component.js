@@ -6,6 +6,8 @@ import template from './app.template.html';
 import {MenuComponent} from '../menu/menu.component';
 import {AppLoaderComponent} from '../app-loader/app-loader.component';
 import PopupComponent from '../popup/popup.component';
+import EventFormComponent from '../event-form/event-form.component';
+import EventNewComponent from '../event-new/event-new.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
 import {routes} from './router.config';
 
@@ -28,7 +30,7 @@ import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
     directives: [
         LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
         MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
-        PopupComponent,
+        PopupComponent, EventFormComponent, EventNewComponent
     ],
     template: template
 })

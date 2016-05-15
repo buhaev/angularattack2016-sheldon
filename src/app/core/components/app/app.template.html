@@ -11,10 +11,12 @@
 
     </div>
 </footer>
+
 <popup
     class="popup"
     [ngClass]="{popup_visible: newEventPopupVisible}"
     [togglePopup]="toggleNewEvent">
+    <event-new [onSuccess]="togglePopup"></event-new>
 </popup>
 
 <app-loader class="app-loader" *ngIf="!(getLoaded() | async)"></app-loader>
