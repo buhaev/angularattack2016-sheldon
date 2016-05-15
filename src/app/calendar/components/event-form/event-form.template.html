@@ -12,14 +12,22 @@
             <div class="form__group form__group_inline">
                 <div class="form__group">
                     <label for="date" class="form__label">Date</label>
-                    <input type="text" name="date" class="input input_middle" />
+                    <input type="text" name="date" class="input input_middle"
+                           id="date"
+                           #date="ngForm"
+                           [ngFormControl]="eventForm.controls['date']" />
                 </div>
                 <div class="form__group">
-                    <label for="start" class="form__label">Time</label>
+                    <label for="startTime" class="form__label">Time</label>
                     <div class="form__group">
-                        <input type="text" name="start" class="input input_small" />
+                        <input type="text" name="start" class="input input_small"
+                               id="startTime"
+                               #startTime="ngForm"
+                               [ngFormControl]="eventForm.controls['startTime']" />
                         <span class="form__minus">—</span>
-                        <input type="text" name="finish" class="input input_small" />
+                        <input type="text" name="finish" class="input input_small"
+                               #endTime="ngForm"
+                               [ngFormControl]="eventForm.controls['endTime']" />
                     </div>
                 </div>
             </div>
