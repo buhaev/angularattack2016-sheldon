@@ -22,6 +22,7 @@ export default class EventFormComponent {
     @Input() event;
 
     @Output() saved = new EventEmitter();
+    @Output() cancel = new EventEmitter();
 
     constructor (builder:FormBuilder) {
 
@@ -87,6 +88,6 @@ export default class EventFormComponent {
     }
 
     onCancel = () => {
-        //this.onSuccess();
+        this.cancel.emit();
     }
 }
