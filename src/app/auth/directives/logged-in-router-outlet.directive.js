@@ -8,7 +8,7 @@ import { UserService } from '../services/user/user.service';
 })
 export class LoggedInRouterOutletDirective extends RouterOutlet {
   publicRoutes = [
-    '', 'login', 'signup', 'about'
+    ''
   ];
 
   constructor(

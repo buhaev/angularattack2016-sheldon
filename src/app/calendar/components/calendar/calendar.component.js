@@ -165,4 +165,43 @@ export class CalendarComponent {
     toggleNewEvent = () => {
         this.newEventPopupVisible = !this.newEventPopupVisible;
     }
+
+    formatPeriod = (event) => {
+        // var DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+        var startDate = event.sheldon.start;
+        var endDate = event.sheldon.end;
+        var allDay = event.sheldon.allDay;
+
+        var sameDay = startDate.isSame(endDate, 'day');
+
+        var result = startDate.format('DD MMMM YYYY');
+
+        var startTime;
+
+        if (!allDay) {
+            if (sameDay) {
+                result += ',';
+            }
+
+            startTime = startDate.format('HH:mm');
+            result += ' ' + startTime;
+        }
+
+        var endTime = endDate.format('HH:mm');
+
+        if ((!allDay && startTime != endTime) || !sameDay) {
+            result += ' — ';
+        }
+
+        if (!sameDay) {
+            result += endDate.format('DD MMMM YYYY');
+            result += !allDay ? ' ' : '';
+        }
+
+        if (!allDay && startTime != endTime) {
+            result += endTime;
+        }
+
+        return result.trim();
+    }
 }

@@ -57,9 +57,7 @@
         color: #151319;
         line-height: 14px;
         min-height: 16px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+
         padding: 1px 7px;
         background: #EAEAEA;
         user-select: none;
@@ -74,5 +72,50 @@
             background: #009688;
             color: white;
         }
+
+        & span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+        }
+
+        &.open {
+            z-index: 10 !important;
+        }
+    }
+}
+
+.dropdown-menu {
+    &_event {
+        color: black;
+        padding: 0;
+        min-width: 300px;
+    }
+
+    &__header {
+
+        padding: 10px;
+
+        > h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        > h5 {
+            font-size: 14px;
+        }
+    }
+
+    &__description {
+        border-top: 1px solid #EBEBEB;
+        padding: 10px;
+        max-height: 150px;
+        overflow: auto;
+    }
+
+    &__actions {
+        //border-top: 1px solid #EBEBEB;
+        padding: 10px;
     }
 }
