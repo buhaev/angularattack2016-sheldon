@@ -13,7 +13,7 @@
                 <div class="form__group">
                     <label for="date" class="form__label">Date</label>
                     <input type="date" name="date" class="input input_date"
-                           id="date"
+                           id="date" required
                            #date="ngForm"
                            [ngFormControl]="eventForm.controls['date']" />
                 </div>
@@ -21,12 +21,12 @@
                     <label for="startTime" class="form__label">Time</label>
                     <div class="form__group">
                         <input type="time" name="start" class="input input_small"
-                               id="startTime"
+                               id="startTime" required
                                #startTime="ngForm"
                                [ngFormControl]="eventForm.controls['startTime']" />
                         <span class="form__minus">—</span>
                         <input type="time" name="finish" class="input input_small"
-                               #endTime="ngForm"
+                               #endTime="ngForm" required
                                [ngFormControl]="eventForm.controls['endTime']" />
                     </div>
                 </div>
