@@ -19,9 +19,10 @@ export class PostListComponent {
     }
 
     ngOnInit () {
-        //this._postService.refreshPosts();
-        this._calendarService.listUpcomingEvents();
-        //CalendarService
+        this._calendarService.listUpcomingEvents({
+            from: '2016-05-01T00:00:00.864Z',
+            to: '2016-05-31T00:00:00.864Z'
+        });
     }
 
     getRemotePosts () {

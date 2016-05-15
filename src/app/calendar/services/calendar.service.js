@@ -58,14 +58,14 @@ export class CalendarService {
     }
 
     @loggedIn
-    listUpcomingEvents (gapi) {
+    listUpcomingEvents ({from, to}, gapi) {
         var request = gapi.client.calendar.events.list({
-            'calendarId': 'primary',
-            'timeMin': (new Date()).toISOString(),
-            'showDeleted': false,
-            'singleEvents': true,
-            'maxResults': 10,
-            'orderBy': 'startTime'
+            calendarId: 'primary',
+            timeMin: from || null,
+            timeMax: to || null,
+            showDeleted: false,
+            singleEvents: true,
+            orderBy: 'startTime'
         });
 
         return new Promise((resolve, reject) => {
@@ -82,8 +82,7 @@ export class CalendarService {
 
 function loggedIn (target, key, descriptor) {
     var method = descriptor.value;
-
-    descriptor.value = function () {
+    descriptor.value = function (...args) {
         return new Promise(resolve => {
             this._userService.getLoggedIn().subscribe((isLoggedIn) => {
                 isLoggedIn && resolve(this._googleApi);
@@ -92,7 +91,9 @@ function loggedIn (target, key, descriptor) {
             return new Promise(resolve => {
                 gapi.client.load('calendar', 'v3', () => resolve(gapi));
             })
-        }).then(method.bind(this));
+        }).then(gapi => {
+            method.apply(this, args.concat(gapi))
+        });
     };
     return descriptor;
 }
