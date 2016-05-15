@@ -29,7 +29,7 @@ export class LoggedInRouterOutletDirective extends RouterOutlet {
       return super.activate(instruction);
     }
 
-    this.parentRouter.navigate(['Login']);
+    //this.parentRouter.navigate(['Login']);
   }
 
   _canActivate(url) {
