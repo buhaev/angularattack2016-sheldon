@@ -29,6 +29,7 @@
         border-bottom: 0;
         border-right: 0;
         vertical-align: top;
+        position: relative;
 
         &_current {
             border: 1px solid #22BBD2;
@@ -55,6 +56,7 @@
         font-size: 12px;
         color: #151319;
         line-height: 14px;
+        min-height: 16px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -62,7 +64,9 @@
         background: #EAEAEA;
         user-select: none;
         cursor: default;
-        //position: absolute;
+        //position: relative;
+        position: absolute;
+        //top: 0;
         width: 100%;
         min-width: 100%;
     }

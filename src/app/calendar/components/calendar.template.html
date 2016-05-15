@@ -23,9 +23,15 @@
                 <div [class.calendar__date_other-month]="day.otherMonth"
                      class="calendar__date">{{ day.date }}
                 </div>
-                <div *ngIf="day.isCurrent" class="calendar__event">
-                    13:00 Собеседование:
-                    Александрова Анна Сергеевна – Менеджер по продажам
+                <div *ngFor="let event of day.events"
+                     [hidden]="event.slot > 3 && day.events.length > 5"
+                     class="calendar__event"
+                     (click)="showEvent(day, event)"
+                     [style.width]="calculateWidth(day, event)"
+                     [style.zIndex]="calculatezIndex(day, event)"
+                     [style.top]="(16 * event.slot + 30) + 'px'"
+                >
+                    {{ getSummary(day, event) }}
                 </div>
             </div>
         </div>
