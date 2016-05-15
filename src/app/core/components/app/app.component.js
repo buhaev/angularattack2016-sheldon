@@ -1,11 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {RouteConfig} from '@angular/router-deprecated';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import template from './app.template.html';
-import {MenuComponent} from '../menu/menu.component';
 import {AppLoaderComponent} from '../app-loader/app-loader.component';
-import PopupComponent from '../popup/popup.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
 import { LoginComponent } from '../../../auth/components/login/login.component';
 import {routes} from './router.config';
@@ -27,7 +24,7 @@ import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
 @Component({
     selector: 'my-app',
     directives: [
-        LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
+        LoggedInRouterOutletDirective, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
         MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
         LoginComponent
     ],
