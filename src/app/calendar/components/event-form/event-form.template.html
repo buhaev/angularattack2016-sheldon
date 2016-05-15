@@ -55,7 +55,7 @@
                         <span class="participants__text">{{ participant }}</span>
                     </li>
                 </ul>
-                <input type="email" placeholder="Add participant" name="participants" class="input" id="participants"
+                <input type="email" placeholder="Email" name="participants" class="input" id="participants"
                        (keypress)="addParticipant($event)"
                 />
             </div>
@@ -81,7 +81,7 @@
             <div class="form__group">
                 <input type="text" name="one_more" id="reminder"
                        autocomplete="off"
-                       placeholder="One more" class="input"
+                       placeholder="Add reminder" class="input"
                        (click)="addReminder($event)"/>
             </div>
             <div class="form__group form__group_wide">
@@ -106,7 +106,7 @@
                 <input type="email" name="email" id="email"
                        class="input"
                        autocomplete="off"
-                       placeholder="One more"
+                       placeholder="Add email reminder"
                        (click)="addEmailReminder($event)" />
             </div>
         </div>

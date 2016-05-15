@@ -15,7 +15,9 @@ const DATE_FORMAT = 'YYYY-MM-DD';
 })
 
 export default class EventFormComponent {
-    reminders = [];
+    reminders = [{type: 'mm',
+        quantity: 15,
+        method: 'popup'}];
     emailReminders = [];
     participants = [];
 
