@@ -15,7 +15,7 @@ const DATE_FORMAT = 'YYYY-MM-DD';
 })
 
 export default class EventFormComponent {
-    participants = ['test', 'test2'];
+    participants = ['st.geass@gmail.com', 'stgea.ss@gmail.com'];
 
     @Input() event;
 
@@ -34,10 +34,9 @@ export default class EventFormComponent {
     }
 
     addParticipant ($event) {
-        $event.preventDefault();
-
         var value = $event.target.value;
         if ($event.keyCode == 13 && value.length) {
+            $event.preventDefault();
             this.participants.push(value);
             $event.target.value = '';
         }

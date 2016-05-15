@@ -19,7 +19,7 @@ export default class EventNewComponent {
   }
 
   onSave(event) {
-    var dateFormat = 'dd.mm.yyy HH:mm';
+    var dateFormat = 'dd/mm/yyy HH:mm';
 
     event.start = moment(event.date + ' ' + event.startTime, dateFormat)
         .local().toJSON();
