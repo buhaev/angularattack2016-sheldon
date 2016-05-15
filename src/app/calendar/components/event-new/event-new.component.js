@@ -21,10 +21,10 @@ export default class EventNewComponent {
   onSave(event) {
     var dateFormat = 'dd.mm.yyy HH:mm';
 
-    event.minTime = moment(event.date + ' ' + event.startTime, dateFormat)
-        .toJSON();
-    event.maxTime = moment(event.date + ' ' + event.endTime, dateFormat)
-        .toJSON();
+    event.start = moment(event.date + ' ' + event.startTime, dateFormat)
+        .local().toJSON();
+    event.end = moment(event.date + ' ' + event.endTime, dateFormat)
+        .local().toJSON();
     console.log('BAZINGA', event);
     this._calendarService.createEvent(event).then(() => {});
   }
