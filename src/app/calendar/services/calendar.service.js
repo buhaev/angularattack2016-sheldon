@@ -94,7 +94,7 @@ export class CalendarService {
         this._calendarsCache = new Promise((resolve, reject) => {
             request.execute((resp) => {
                 this.calendars.next(resp.items);
-
+                // console.log(resp.items);
                 resolve(resp.items);
             })
         });

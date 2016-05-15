@@ -36,6 +36,7 @@
                 <div *ngFor="let event of day.events"
                      [hidden]="event.slot > 3 && day.events.length > 5"
                      class="calendar__event"
+                     [class.calendar__event_selected]="event.selected"
                      (click)="showEvent(day, event)"
                      [style.width]="calculateWidth(day, event)"
                      [style.zIndex]="calculatezIndex(day, event)"
