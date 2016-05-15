@@ -51,9 +51,7 @@
                             <h5>{{ formatPeriod(event) }}</h5>
                         </div>
 
-                        <div class="dropdown-menu__description" [hidden]="!event.description">
-                            {{ event.description }}
-                        </div>
+                        <div class="dropdown-menu__description" [hidden]="!event.description">{{ event.description }}</div>
                         <!--<div class="dropdown-menu__actions">-->
                             <!--<button md-button dropdownToggle>Close</button>-->
                         <!--</div>-->

@@ -41,7 +41,7 @@ export class CalendarComponent {
         this.calendarService = calendarService;
         this.loadEvents();
 
-        calendarService.listCalendars();    
+        // calendarService.listCalendars();
     }
 
     getLoggedIn() {
@@ -73,6 +73,7 @@ export class CalendarComponent {
         // this.calendarService.listCalendars().then((calendars) => {
         this.calendarService.listUpcomingEvents({from: this.days[0].value.format(),
             to: this.days[this.days.length -1 ].value.format()}).then((results) => {
+
             results.forEach((event) => {
                 let start = event.start.dateTime ? moment(event.start.dateTime, DATETIME_FORMAT) :
                     moment(event.start.date, DATE_FORMAT);

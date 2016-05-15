@@ -15,7 +15,7 @@ const DATE_FORMAT = 'YYYY-MM-DD';
 })
 
 export default class EventFormComponent {
-    reminders = [];
+    reminders = [{type: 'mm', quantity: 15}];
     participants = [];
 
     @Input() event;
@@ -48,7 +48,7 @@ export default class EventFormComponent {
     addReminder ($event) {
         this.reminders.push({
             type: 'mm',
-            quantity: 0
+            quantity: 30
         });
     }
 
@@ -56,6 +56,12 @@ export default class EventFormComponent {
         $event.preventDefault();
 
         this.participants.splice($index, 1);
+    }
+
+    removeReminder ($index, $event) {
+        $event.preventDefault();
+
+        this.reminders.splice($index, 1);
     }
 
     onSubmit (event) {

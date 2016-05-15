@@ -62,8 +62,9 @@
             <div class="form__group">
                 <label for="reminder" class="form__label">Reminder</label>
                 <div class="form__group form__group_wide">
-                    <div *ngFor="let reminder of reminders">
-                        <input type="text" name="reminder"
+                    <div *ngFor="let reminder of reminders; let $i = index"
+                        class="reminder">
+                        <input type="number" name="reminder" autocomplete="off"
                                [(ngModel)]="reminder.quantity"
                                class="input input_small" />
                         <select class="select select_middle" name="reminder_time"
@@ -73,17 +74,19 @@
                             <option value="dd">Days</option>
                             <option value="ww">Weeks</option>
                         </select>
+                        <a href="javascript:void(0);" (click)="removeReminder($i, $event)" class="reminder__remove"></a>
                     </div>
                 </div>
             </div>
             <div class="form__group">
                 <input type="text" name="one_more" id="reminder"
+                       autocomplete="off"
                        placeholder="One more" class="input"
                        (click)="addReminder($event)"/>
             </div>
             <div class="form__group">
                 <label for="email" class="form__label">Remind me by email</label>
-                <input type="email" name="email" class="input" />
+                <input type="email" name="email" class="input" autocomplete="off" />
             </div>
         </div>
     </div>
