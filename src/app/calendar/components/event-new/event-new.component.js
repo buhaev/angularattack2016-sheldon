@@ -8,24 +8,33 @@ import { CalendarService } from '../../services/calendar.service';
 import EventFormComponent from '../event-form/event-form.component';
 
 @Component({
-  selector: 'event-new',
-  template: template,
-  directives: [EventFormComponent]
+    selector: 'event-new',
+    template: template,
+    directives: [EventFormComponent]
 })
 export default class EventNewComponent {
-  constructor(calendarService: CalendarService, router: Router) {
-    this._calendarService = calendarService;
-    this._router = router;
-  }
+    constructor (calendarService:CalendarService, router:Router) {
+        this._calendarService = calendarService;
+        this._router = router;
+    }
 
-  onSave(event) {
-    var dateFormat = 'dd/mm/yyy HH:mm';
+    onSave (event) {
+        var dateFormat = 'dd/mm/yyy HH:mm';
 
-    event.start = moment(event.date + ' ' + event.startTime, dateFormat)
-        .local().toJSON();
-    event.end = moment(event.date + ' ' + event.endTime, dateFormat)
-        .local().toJSON();
-    console.log('BAZINGA', event);
-    this._calendarService.createEvent(event).then(() => {});
-  }
+        this._calendarService.createEvent({
+            summary: event.summary,
+            location: event.place,
+            description: event.description,
+            start: {
+                dateTime: moment(event.date + ' ' + event.startTime, dateFormat)
+                    .local().toJSON()
+            },
+            end: {
+                dateTime: moment(event.date + ' ' + event.endTime, dateFormat)
+                    .local().toJSON()
+            },
+            attendees: event.participants.map(value => ({ email: value })),
+        }).then(() => {
+        });
+    }
 }

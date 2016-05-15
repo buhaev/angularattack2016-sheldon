@@ -62,17 +62,24 @@
             <div class="form__group">
                 <label for="reminder" class="form__label">Reminder</label>
                 <div class="form__group form__group_wide">
-                    <input type="text" name="reminder" class="input input_small" />
-                    <select class="select select_middle" name="reminder_time">
-                        <option value="mm">Minutes</option>
-                        <option value="HH">Hours</option>
-                        <option value="dd">Days</option>
-                        <option value="ww">Weeks</option>
-                    </select>
+                    <div *ngFor="let reminder of reminders">
+                        <input type="text" name="reminder"
+                               [(ngModel)]="reminder.quantity"
+                               class="input input_small" />
+                        <select class="select select_middle" name="reminder_time"
+                                [(ngModel)]="reminder.type">
+                            <option value="mm">Minutes</option>
+                            <option value="hh">Hours</option>
+                            <option value="dd">Days</option>
+                            <option value="ww">Weeks</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="form__group">
-                <input type="text" name="one_more" placeholder="One more" class="input" />
+                <input type="text" name="one_more" id="reminder"
+                       placeholder="One more" class="input"
+                       (click)="addReminder($event)"/>
             </div>
             <div class="form__group">
                 <label for="email" class="form__label">Remind me by email</label>

@@ -15,7 +15,8 @@ const DATE_FORMAT = 'YYYY-MM-DD';
 })
 
 export default class EventFormComponent {
-    participants = ['st.geass@gmail.com', 'stgea.ss@gmail.com'];
+    reminders = [];
+    participants = [];
 
     @Input() event;
 
@@ -29,7 +30,9 @@ export default class EventFormComponent {
             description: [''],
             date: [moment().format(DATE_FORMAT)],
             startTime: ['00:00'],
-            endTime: ['03:00']
+            endTime: ['03:00'],
+            remindTime: ['00'],
+            remindType: ['mm']
         });
     }
 
@@ -42,6 +45,13 @@ export default class EventFormComponent {
         }
     }
 
+    addReminder ($event) {
+        this.reminders.push({
+            type: 'mm',
+            quantity: 0
+        });
+    }
+
     removeParticipant ($index, $event) {
         $event.preventDefault();
 
@@ -49,7 +59,9 @@ export default class EventFormComponent {
     }
 
     onSubmit (event) {
+        event.reminders = this.reminders;
         event.participants = this.participants;
+
         this.saved.emit(event);
     }
 

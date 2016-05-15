@@ -8,6 +8,13 @@ require('moment-range');
 
 @Injectable()
 export class CalendarService {
+    multipliers = [
+        { id: 'minutes', name: 'минута', mult: 1 },
+        { id: 'hours', name: 'час', mult: 60 },
+        { id: 'days', name: 'день', mult: 60 * 24 },
+        { id: 'weeks', name: 'неделя', mult: 60 * 24 * 7 }
+    ];
+
     remoteEvents = new BehaviorSubject([]);
     calendars = new BehaviorSubject([]);
 
@@ -47,24 +54,9 @@ export class CalendarService {
     }
 
     @loggedIn
-    createEvent (params, gapi) {
-        var {summary, location, description, start, end, participants} = params;
+    createEvent (event, gapi) {
 
-        var event = {
-            summary,
-            location,
-            description,
-            start: { dateTime: start },
-            end: { dateTime: end },
-            attendees: participants.map(value => ({email: value})),
-            //'reminders': {
-            //    'useDefault': false,
-            //    'overrides': [
-            //        { 'method': 'email', 'minutes': 24 * 60 },
-            //        { 'method': 'popup', 'minutes': 10 }
-            //    ]
-            //}
-        };
+        console.log('BAZINGA', event);
 
         return new Promise(resolve => {
             var request = gapi.client.calendar.events.insert({
@@ -121,6 +113,19 @@ export class CalendarService {
                 this._applicationRef.tick();
             });
         });
+    }
+
+    getMultiplier (minutes) {
+        for (var i = this.multipliers.length - 1; i >= 0; i--) {
+            var m = this.multipliers[i];
+
+            if (minutes / m.mult === parseInt(minutes / m.mult, 10)) {
+                return {
+                    value: parseInt(minutes / m.mult, 10),
+                    multiplier: m.id
+                };
+            }
+        }
     }
 }
 
