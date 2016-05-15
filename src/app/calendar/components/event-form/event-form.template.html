@@ -84,9 +84,30 @@
                        placeholder="One more" class="input"
                        (click)="addReminder($event)"/>
             </div>
-            <div class="form__group">
+            <div class="form__group form__group_wide">
                 <label for="email" class="form__label">Remind me by email</label>
-                <input type="email" name="email" class="input" autocomplete="off" />
+                <div *ngFor="let reminder of emailReminders; let $i = index"
+                     class="reminder">
+                    <input type="number" name="reminder" autocomplete="off"
+                           [(ngModel)]="reminder.quantity"
+                           class="input input_small" />
+                    <select class="select select_middle" name="reminder_time"
+                            [(ngModel)]="reminder.type">
+                        <option value="mm">Minutes</option>
+                        <option value="hh">Hours</option>
+                        <option value="dd">Days</option>
+                        <option value="ww">Weeks</option>
+                    </select>
+                    <a href="javascript:void(0);"
+                       (click)="removeEmailReminder($i, $event)" class="reminder__remove"></a>
+                </div>
+            </div>
+            <div class="form__group">
+                <input type="email" name="email" id="email"
+                       class="input"
+                       autocomplete="off"
+                       placeholder="One more"
+                       (click)="addEmailReminder($event)" />
             </div>
         </div>
     </div>

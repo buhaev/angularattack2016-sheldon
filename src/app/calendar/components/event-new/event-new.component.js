@@ -39,7 +39,7 @@ export default class EventNewComponent {
                 'overrides': event.reminders.map((reminder) => {
                     let mult = this._calendarService.multipliers[reminder.type];
                     return {
-                        method: 'email',
+                        method: reminder.method,
                         minutes: reminder.quantity * mult
                     }
                 })
