@@ -7,12 +7,10 @@ import {LoginComponent} from '../../../auth/components/login/login.component';
 import {CalendarComponent} from '../../../calendar/components/calendar.component';
 
 export const routes = [
-    {path: '/', component: PostListComponent, name: 'List', useAsDefault: true},
-    {path: '/calendar', component: CalendarComponent, name: 'Calendar'},
-
-
-    {path: '/new', component: PostNewComponent, name: 'New'},
-    {path: '/edit/:id', component: PostEditComponent, name: 'Edit'},
-    {path: '/about', component: AboutComponent, name: 'About'},
-    {path: '/login', component: LoginComponent, name: 'Login'}
+    {path: '/', component: CalendarComponent, name: 'Calendar', useAsDefault: true}
+    // {path: '/calendar', component: CalendarComponent, name: 'Calendar'},
+    // {path: '/new', component: PostNewComponent, name: 'New'},
+    // {path: '/edit/:id', component: PostEditComponent, name: 'Edit'},
+    // {path: '/about', component: AboutComponent, name: 'About'},
+    // {path: '/login', component: LoginComponent, name: 'Login'}
 ];

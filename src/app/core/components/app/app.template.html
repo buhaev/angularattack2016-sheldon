@@ -1,20 +1,6 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <top-menu [toggleNewEvent]="toggleNewEvent"></top-menu>
-</nav>
-
 <div class="body-container">
     <router-outlet></router-outlet>
+    <login *ngIf="!(getLoggedIn() | async)"></login>
 </div>
-
-<footer class="footer">
-    <div class="container">
-
-    </div>
-</footer>
-<popup
-    class="popup"
-    [ngClass]="{popup_visible: newEventPopupVisible}"
-    [togglePopup]="toggleNewEvent">
-</popup>
 
 <app-loader class="app-loader" *ngIf="!(getLoaded() | async)"></app-loader>
