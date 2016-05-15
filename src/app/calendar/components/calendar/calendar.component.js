@@ -5,9 +5,9 @@ require('moment-range');
 import template from './calendar.template.html';
 
 import {MdButton} from '@angular2-material/button';
-import { CalendarService } from '../services/calendar.service';
-import { UserService } from '../../auth';
-import PopupComponent from '../../core/components/popup/popup.component';
+import { CalendarService } from '../../services/calendar.service';
+import { UserService } from '../../../auth';
+import PopupComponent from '../popup/popup.component';
 
 
 const DATE_FORMAT = 'YYYY-MM-DD';

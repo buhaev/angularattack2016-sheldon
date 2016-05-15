@@ -3,9 +3,9 @@ import {RouteConfig} from '@angular/router-deprecated';
 
 import template from './app.template.html';
 import {AppLoaderComponent} from '../app-loader/app-loader.component';
-import PopupComponent from '../popup/popup.component';
-import EventFormComponent from '../event-form/event-form.component';
-import EventNewComponent from '../event-new/event-new.component';
+import PopupComponent from '../../../calendar/components/popup/popup.component';
+import EventFormComponent from '../../../calendar/components/event-form/event-form.component';
+import EventNewComponent from '../../../calendar/components/event-new/event-new.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
 import {LoginComponent} from '../../../auth/components/login/login.component';
 import {routes} from './router.config';

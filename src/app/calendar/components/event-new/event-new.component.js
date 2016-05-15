@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
 import template from './event-new.template.html';
-import { CalendarService } from '../../../calendar/services/calendar.service';
+import { CalendarService } from '../../services/calendar.service';
 import EventFormComponent from '../event-form/event-form.component';
 
 @Component({
