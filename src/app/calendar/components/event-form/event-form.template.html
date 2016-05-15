@@ -47,8 +47,15 @@
         <div class="form__part">
             <div class="form__group">
                 <label for="participants" class="form__label">Participants</label>
-                <div class="participants"></div>
-                <input type="text" name="participants" class="input" />
+                <div class="participants">
+                    <div *ngFor="let participant of participants; let $i = index">
+                        {{ participant }}
+                        <a href="#" (click)="removeParticipant($i, $event)">remove</a>
+                    </div>
+                </div>
+                <input type="text" name="participants" class="input" id="participants"
+                       (keyup)="addParticipant($event)"
+                />
             </div>
             <div class="form__group">
                 <label for="reminder" class="form__label">Reminder</label>

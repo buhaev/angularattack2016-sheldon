@@ -19,8 +19,11 @@ export class CalendarService {
         this._calendarsCache = null;
     }
 
-    getRange(month, year) {
-        var value = month !== undefined ? moment({month: month, year: year}) : moment();
+    getRange (month, year) {
+        var value = month !== undefined ? moment({
+            month: month,
+            year: year
+        }) : moment();
 
         var start = value.clone().startOf('month');
         var startDay = (start.day() === 0 ? 7 : start.day()) - 1;
@@ -39,28 +42,21 @@ export class CalendarService {
         });
     }
 
-    dateIsWeekend(day) {
+    dateIsWeekend (day) {
         return day === 0 || day === 6;
     }
 
     @loggedIn
-    createEvent ({summary, location, description}, gapi) {
+    createEvent (params, gapi) {
+        var {summary, location, description, start, end, participants} = params;
+
         var event = {
             summary,
             location,
             description,
-            start: {
-                dateTime: '2015-05-28T09:00:00-07:00',
-                timeZone: 'America/Los_Angeles'
-            },
-            end: {
-                dateTime: '2015-05-28T17:00:00-07:00',
-                timeZone: 'America/Los_Angeles'
-            },
-            //'attendees': [
-            //    { 'email': 'lpage@example.com' },
-            //    { 'email': 'sbrin@example.com' }
-            //],
+            start: { dateTime: start },
+            end: { dateTime: end },
+            attendees: participants.map(value => ({email: value})),
             //'reminders': {
             //    'useDefault': false,
             //    'overrides': [
@@ -69,6 +65,7 @@ export class CalendarService {
             //    ]
             //}
         };
+
         return new Promise(resolve => {
             var request = gapi.client.calendar.events.insert({
                 'calendarId': 'primary',
@@ -87,9 +84,7 @@ export class CalendarService {
             return this._calendarsCache;
         }
 
-        var request = gapi.client.calendar.calendarList.list({
-
-        });
+        var request = gapi.client.calendar.calendarList.list({});
 
         this._calendarsCache = new Promise((resolve, reject) => {
             request.execute((resp) => {
@@ -101,7 +96,7 @@ export class CalendarService {
 
         return this._calendarsCache;
     }
-    
+
     getCalendars () {
         return this.calendars;
     }
