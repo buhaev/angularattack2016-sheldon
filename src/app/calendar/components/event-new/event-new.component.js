@@ -10,7 +10,8 @@ import EventFormComponent from '../event-form/event-form.component';
 @Component({
     selector: 'event-new',
     template: template,
-    directives: [EventFormComponent]
+    directives: [EventFormComponent],
+    inputs: ['onSuccess']
 })
 export default class EventNewComponent {
     constructor (calendarService:CalendarService, router:Router) {
@@ -45,6 +46,11 @@ export default class EventNewComponent {
                 })
             }
         }).then(() => {
+            this.onSuccess();
         });
+    }
+
+    onCancel = () => {
+        this.onSuccess();
     }
 }
