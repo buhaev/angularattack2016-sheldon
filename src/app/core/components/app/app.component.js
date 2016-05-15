@@ -7,6 +7,7 @@ import {MenuComponent} from '../menu/menu.component';
 import {AppLoaderComponent} from '../app-loader/app-loader.component';
 import PopupComponent from '../popup/popup.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
+import { LoginComponent } from '../../../auth/components/login/login.component';
 import {routes} from './router.config';
 
 import {MdButton} from '@angular2-material/button';
@@ -28,7 +29,7 @@ import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
     directives: [
         LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
         MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
-        PopupComponent,
+        LoginComponent
     ],
     template: template
 })
@@ -37,15 +38,13 @@ export class AppComponent {
     constructor(@Inject('ENVIRONMENT') environment, userService:UserService) {
         this.environment = environment;
         this._userService = userService;
-
-        this.newEventPopupVisible = false;
     }
 
     getLoaded() {
         return this._userService.getLoginChecked();
     }
 
-    toggleNewEvent = () => {
-        this.newEventPopupVisible = !this.newEventPopupVisible;
+    getLoggedIn() {
+        return this._userService.getLoggedIn();
     }
 }

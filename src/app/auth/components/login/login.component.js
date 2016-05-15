@@ -4,24 +4,24 @@ import { Router } from '@angular/router-deprecated';
 
 import template from './login.template.html';
 import { UserService } from '../../services/user/user.service';
-import { validatorFactory } from '../../../posts/validator';
+import { MdButton } from '@angular2-material/button';
 
 @Component({
   selector: 'login',
   template: template,
-  directives: [FORM_DIRECTIVES]
+  directives: [MdButton]
 })
 export class LoginComponent {
 
   constructor(userService: UserService, router: Router) {
-    this._userService = userService;
-    this._router = router;
+    this.userService = userService;
+    this.router = router;
   }
 
   authLogin() {
-    this._userService.login().then((result) => {
+    this.userService.login().then((result) => {
       if (result) {
-        this._router.navigate(['List']);
+        this.router.navigate(['Calendar']);
       }
     });
   }

@@ -6,6 +6,9 @@ import template from './calendar.template.html';
 
 import {MdButton} from '@angular2-material/button';
 import { CalendarService } from '../services/calendar.service';
+import { UserService } from '../../auth';
+import PopupComponent from '../../core/components/popup/popup.component';
+
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ssZZ';
@@ -13,10 +16,12 @@ const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ssZZ';
 @Component({
     selector: 'calendar',
     template: template,
-    directives: [MdButton]
+    directives: [MdButton, PopupComponent],
+    inputs: ['toggleNewEvent']
 })
 export class CalendarComponent {
-    constructor(calendarService: CalendarService) {
+    constructor(calendarService: CalendarService, userService: UserService) {
+        this.userService = userService;
         this.state = moment();
 
         this.maxWidths = { // dumb but work
@@ -29,8 +34,14 @@ export class CalendarComponent {
             6: 2
         };
 
+        this.newEventPopupVisible = false;
+
         this.calendarService = calendarService;
         this.loadEvents();
+    }
+
+    getLoggedIn() {
+        return this.userService.getLoggedIn();
     }
 
     nextMonth() {
@@ -131,5 +142,9 @@ export class CalendarComponent {
 
     showEvent(day, event) {
         console.log(event);
+    }
+
+    toggleNewEvent = () => {
+        this.newEventPopupVisible = !this.newEventPopupVisible;
     }
 }
