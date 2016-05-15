@@ -1,13 +1,13 @@
-import { Component, Inject } from '@angular/core';
-import { RouteConfig } from '@angular/router-deprecated';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Component, Inject} from '@angular/core';
+import {RouteConfig} from '@angular/router-deprecated';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import template from './app.template.html';
-import { MenuComponent } from '../menu/menu.component';
-import { AppLoaderComponent } from '../app-loader/app-loader.component';
+import {MenuComponent} from '../menu/menu.component';
+import {AppLoaderComponent} from '../app-loader/app-loader.component';
 import PopupComponent from '../popup/popup.component';
-import { LoggedInRouterOutletDirective, UserService } from '../../../auth';
-import { routes } from './router.config';
+import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
+import {routes} from './router.config';
 
 import {MdButton} from '@angular2-material/button';
 import {MdCard} from '@angular2-material/card';
@@ -24,28 +24,28 @@ import {MdToolbar} from '@angular2-material/toolbar';
 import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
 
 @Component({
-  selector: 'my-app',
-  directives: [
-    LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
-    MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
-    PopupComponent
-  ],
-  template: template
+    selector: 'my-app',
+    directives: [
+        LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
+        MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
+        PopupComponent,
+    ],
+    template: template
 })
 @RouteConfig(routes)
 export class AppComponent {
-  constructor(@Inject('ENVIRONMENT') environment, userService: UserService) {
-    this.environment = environment;
-    this._userService = userService;
+    constructor(@Inject('ENVIRONMENT') environment, userService:UserService) {
+        this.environment = environment;
+        this._userService = userService;
 
-    this.newEventPopupVisible = false;
-  }
+        this.newEventPopupVisible = false;
+    }
 
-  getLoaded() {
-    return this._userService.getLoginChecked();
-  }
+    getLoaded() {
+        return this._userService.getLoginChecked();
+    }
 
-  toggleNewEvent = () => {
-    this.newEventPopupVisible = !this.newEventPopupVisible;
-  }
+    toggleNewEvent = () => {
+        this.newEventPopupVisible = !this.newEventPopupVisible;
+    }
 }

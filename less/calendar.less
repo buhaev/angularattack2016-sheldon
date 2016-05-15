@@ -1,0 +1,69 @@
+.calendar {
+    margin: 0 0 30px;
+
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+
+        border-right: 1px solid #EBEBEB;
+        border-bottom: 1px solid #EBEBEB;
+    }
+
+    &__header {
+        margin-top: 15px;
+        margin-bottom: 12px;
+        min-height: 40px;
+    }
+
+    &__title {
+        text-align: center;
+        line-height: 40px;
+        font-size: 22px;
+        text-transform: capitalize;
+    }
+
+    &__day {
+        width: 14.28571429%;
+        height: 110px;
+        border: 1px solid #EBEBEB;
+        border-bottom: 0;
+        border-right: 0;
+        vertical-align: top;
+
+        &_current {
+            border: 1px solid #22BBD2;
+        }
+
+        &_weekend {
+            background: #FBFBFB;
+        }
+    }
+
+    &__date {
+        text-align: right;
+        font-size: 18px;
+        line-height: 32px;
+        padding-top: 0;
+        padding-right: 5px;
+
+        &_other-month {
+            color: #CCCCCC;
+        }
+    }
+
+    &__event {
+        font-size: 12px;
+        color: #151319;
+        line-height: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 1px 7px;
+        background: #EAEAEA;
+        user-select: none;
+        cursor: default;
+        //position: absolute;
+        width: 100%;
+        min-width: 100%;
+    }
+}
