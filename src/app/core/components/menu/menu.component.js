@@ -8,7 +8,8 @@ import { UserService } from '../../../auth';
   selector: 'top-menu',
   template: template,
   directives: [ROUTER_DIRECTIVES],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  inputs: ['toggleNewEvent'],
 })
 export class MenuComponent {
   constructor(userService: UserService, router: Router) {

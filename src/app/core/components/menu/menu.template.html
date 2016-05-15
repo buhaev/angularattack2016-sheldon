@@ -6,6 +6,7 @@
         <ul class="nav navbar-nav">
             <li><a (click)="login()" *ngIf="!(getLoggedIn() | async)">Login with Google</a></li>
             <li><a href="#" (click)="logout()" *ngIf="getLoggedIn() | async">Logout</a></li>
+            <li><a href="#" (click)="toggleNewEvent()" *ngIf="getLoggedIn() | async">Create new event</a></li>
         </ul>
     </div>
 </div>
