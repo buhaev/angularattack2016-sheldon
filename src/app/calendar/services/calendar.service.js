@@ -99,7 +99,6 @@ export class CalendarService {
 
         return new Promise((resolve, reject) => {
             request.execute((resp) => {
-                console.log(resp.items);
                 resolve(resp.items);
 
                 this.remoteEvents.next(resp.items);

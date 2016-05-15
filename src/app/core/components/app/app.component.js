@@ -9,7 +9,7 @@ import PopupComponent from '../popup/popup.component';
 import EventFormComponent from '../event-form/event-form.component';
 import EventNewComponent from '../event-new/event-new.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
-import { LoginComponent } from '../../../auth/components/login/login.component';
+import {LoginComponent} from '../../../auth/components/login/login.component';
 import {routes} from './router.config';
 
 import {MdButton} from '@angular2-material/button';
@@ -37,22 +37,16 @@ import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
 })
 @RouteConfig(routes)
 export class AppComponent {
-    constructor(@Inject('ENVIRONMENT') environment, userService:UserService) {
+    constructor (@Inject('ENVIRONMENT') environment, userService:UserService) {
         this.environment = environment;
         this._userService = userService;
-
-        this.newEventPopupVisible = false;
     }
 
-    getLoaded() {
+    getLoaded () {
         return this._userService.getLoginChecked();
     }
 
-    getLoggedIn() {
+    getLoggedIn () {
         return this._userService.getLoggedIn();
-    }
-
-    toggleNewEvent = () => {
-        this.newEventPopupVisible = !this.newEventPopupVisible;
     }
 }
