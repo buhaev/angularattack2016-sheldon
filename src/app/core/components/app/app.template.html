@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <top-menu></top-menu>
+    <top-menu [toggleNewEvent]="toggleNewEvent"></top-menu>
 </nav>
 
 <div class="body-container">
@@ -11,5 +11,10 @@
 
     </div>
 </footer>
+<popup
+    class="popup"
+    [ngClass]="{popup_visible: newEventPopupVisible}"
+    [togglePopup]="toggleNewEvent">
+</popup>
 
 <app-loader class="app-loader" *ngIf="!(getLoaded() | async)"></app-loader>

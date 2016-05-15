@@ -1,0 +1,46 @@
+.form {
+    &__content {
+        display: flex;
+        flex-flow: row nowrap;
+        border-bottom: 1px solid #EBEBEB;
+        margin-bottom: 20px;
+    }
+
+    &__part {
+        width: 260px;
+        padding: 10px 0 0 20px;
+
+        &_left {
+            width: 450px;
+            padding: 10px 20px 0 0;
+            border-right: 1px solid #EBEBEB;
+        }
+    }
+
+    &__group {
+        margin-bottom: 20px;
+
+        &_inline {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .form__group {
+            margin-bottom: 0;
+            margin-right: 20px;
+
+            &_wide {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    &__minus {
+        line-height: 28px;
+    }
+}

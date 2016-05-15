@@ -1,0 +1,62 @@
+<form class="form form_event">
+    <div class="form__content">
+        <div class="form__part form__part_left">
+            <div class="form__group">
+                <label for="title" class="form__label">Title</label>
+                <input type="text" name="title" class="input" />
+            </div>
+            <div class="form__group form__group_inline">
+                <div class="form__group">
+                    <label for="date" class="form__label">Date</label>
+                    <input type="text" name="date" class="input input_middle" />
+                </div>
+                <div class="form__group">
+                    <label for="start" class="form__label">Time</label>
+                    <div class="form__group">
+                        <input type="text" name="start" class="input input_small" />
+                        <span class="form__minus">—</span>
+                        <input type="text" name="finish" class="input input_small" />
+                    </div>
+                </div>
+            </div>
+            <div class="form__group">
+                <label for="description" class="form__label">Description</label>
+                <textarea name="description" class="textarea"></textarea>
+            </div>
+            <div class="form__group">
+                <label for="place" class="form__label">Place</label>
+                <input type="text" name="place" class="input" />
+            </div>
+        </div>
+        <div class="form__part">
+            <div class="form__group">
+                <label for="participants" class="form__label">Participants</label>
+                <div class="participants"></div>
+                <input type="text" name="participants" class="input" />
+            </div>
+            <div class="form__group">
+                <label for="reminder" class="form__label">Reminder</label>
+                <div class="form__group form__group_wide">
+                    <input type="text" name="reminder" class="input input_small" />
+                    <select class="select select_middle" name="reminder_time">
+                        <option value="mm">Minutes</option>
+                        <option value="HH">Hours</option>
+                        <option value="dd">Days</option>
+                        <option value="ww">Weeks</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form__group">
+                <input type="text" name="one_more" placeholder="One more" class="input" />
+            </div>
+            <div class="form__group">
+                <label for="email" class="form__label">Remind me by email</label>
+                <input type="email" name="email" class="input" />
+            </div>
+        </div>
+    </div>
+    <div class="form__buttons">
+        <button type="submit" class="btn btn-success" (click)="onSave($event)">Save</button>
+        <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+    </div>
+</form>
