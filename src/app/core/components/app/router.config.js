@@ -4,7 +4,7 @@ import {PostEditComponent} from '../../../posts/components/post-edit/post-edit.c
 import {AboutComponent} from '../about/about.component';
 import {LoginComponent} from '../../../auth/components/login/login.component';
 
-import {CalendarComponent} from '../../../calendar/components/calendar.component';
+import {CalendarComponent} from '../../../calendar/components/calendar/calendar.component';
 
 export const routes = [
     {path: '/', component: CalendarComponent, name: 'Calendar', useAsDefault: true}
