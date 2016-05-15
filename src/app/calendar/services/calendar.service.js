@@ -19,8 +19,6 @@ export class CalendarService {
     getRange(month, year) {
         var value = month !== undefined ? moment({month: month, year: year}) : moment();
 
-        this.title = value.format("MMMM YYYY");
-
         var start = value.clone().startOf('month');
         var startDay = (start.day() === 0 ? 7 : start.day()) - 1;
         var begin = start.subtract(startDay, 'days');

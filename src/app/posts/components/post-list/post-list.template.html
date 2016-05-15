@@ -1,8 +1,0 @@
-<div class="row">
-    <div class="col-sm-12">
-        <h1>Posts <a [routerLink]="['/New']" class="btn btn-primary pull-right">New event</a></h1>
-        <div class="list-group">
-            <post-list-item *ngFor="let event of getRemoteEvents() | async" [event]="event"></post-list-item>
-        </div>
-    </div>
-</div>

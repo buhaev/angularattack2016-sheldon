@@ -23,8 +23,8 @@ import { AppComponent } from './app/core/components/app/app.component';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { FORM_PROVIDERS, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { CALENDAR_PROVIDERS } from './app/calendar';
 import { AUTH_PROVIDERS } from './app/auth';
-import { POSTS_PROVIDERS } from './app/posts';
 
 if (ENVIRONMENT === 'production') {
   enableProdMode();
@@ -41,8 +41,8 @@ function main() {
         FORM_PROVIDERS,
         HTTP_PROVIDERS,
         ROUTER_PROVIDERS,
+        CALENDAR_PROVIDERS,
         AUTH_PROVIDERS,
-        POSTS_PROVIDERS,
         provide(LocationStrategy, { useClass: HashLocationStrategy }),
         provide('ENVIRONMENT', { useValue: ENVIRONMENT }),
         provide('googleApi', { useValue: gapiPromise })
