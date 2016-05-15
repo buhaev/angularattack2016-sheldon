@@ -1,5 +1,6 @@
 <div class="popup__backdrop" (click)="togglePopup()"></div>
 <div class="popup__content">
     <div class="popup__title">{{ title }}</div>
-    <form-event [onSuccess]="togglePopup"></form-event>
+
+    <ng-content></ng-content>
 </div>

@@ -1,9 +1,13 @@
-<form class="form form_event">
+<form class="form form_event"
+      [ngFormModel]="eventForm"
+      (ngSubmit)="onSubmit(eventForm.value)" >
     <div class="form__content">
         <div class="form__part form__part_left">
             <div class="form__group">
-                <label for="title" class="form__label">Title</label>
-                <input type="text" name="title" class="input" />
+                <label for="summary" class="form__label">Summary</label>
+                <input type="text" name="summary" class="input" id="summary"
+                       #summary="ngForm"
+                       [ngFormControl]="eventForm.controls['summary']"/>
             </div>
             <div class="form__group form__group_inline">
                 <div class="form__group">
@@ -56,7 +60,7 @@
         </div>
     </div>
     <div class="form__buttons">
-        <button type="submit" class="btn btn-success" (click)="onSave($event)">Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
         <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
     </div>
 </form>
