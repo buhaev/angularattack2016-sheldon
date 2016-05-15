@@ -22,13 +22,13 @@ import {MdRadioButton} from '@angular2-material/radio';
 import {MdSidenav} from '@angular2-material/sidenav';
 import {MdToolbar} from '@angular2-material/toolbar';
 
-import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
+
 
 @Component({
     selector: 'my-app',
     directives: [
         LoggedInRouterOutletDirective, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
-        MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
+        MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar,
         LoginComponent, PopupComponent, EventFormComponent, EventNewComponent
     ],
     template: template
