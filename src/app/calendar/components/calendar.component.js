@@ -5,7 +5,7 @@ require('moment-range');
 import template from './calendar.template.html';
 
 import {MdButton} from '@angular2-material/button';
-import { CalendarService } from '../services/calendar.service'; 
+import { CalendarService } from '../services/calendar.service';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss+-HH:mm';
@@ -13,7 +13,6 @@ const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss+-HH:mm';
 @Component({
     selector: 'calendar',
     template: template,
-    styleUrls: ['css/calendar.css'],
     directives: [MdButton]
 })
 export class CalendarComponent {
