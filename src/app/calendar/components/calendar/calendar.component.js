@@ -168,6 +168,9 @@ export class CalendarComponent {
 
     toggleNewEvent = () => {
         this.newEventPopupVisible = !this.newEventPopupVisible;
+
+        /* dirty*/
+        document.body.style.overflow = this.newEventPopupVisible ? 'hidden' : 'auto';
     }
 
     formatPeriod = (event) => {
