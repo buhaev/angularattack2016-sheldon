@@ -17,12 +17,11 @@ export default class EventFormComponent {
         this.eventForm = builder.group({
             summary: [''],
             place: [''],
-            description: ['']
+            description: [''],
+            date: ['15.05.2016'],
+            startTime: ['00:00'],
+            endTime: ['03:00']
         });
-    }
-
-    ngOnChanges (change) {
-        console.log(123);
     }
 
     onSubmit(event) {
