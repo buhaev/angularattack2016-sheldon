@@ -8,12 +8,12 @@ require('moment-range');
 
 @Injectable()
 export class CalendarService {
-    multipliers = [
-        { id: 'minutes', name: 'минута', mult: 1 },
-        { id: 'hours', name: 'час', mult: 60 },
-        { id: 'days', name: 'день', mult: 60 * 24 },
-        { id: 'weeks', name: 'неделя', mult: 60 * 24 * 7 }
-    ];
+    multipliers = {
+        mm: 1,
+        hh: 60,
+        dd: 60 * 24,
+        ww: 60 * 24 * 7
+    };
 
     remoteEvents = new BehaviorSubject([]);
     calendars = new BehaviorSubject([]);

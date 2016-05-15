@@ -45,6 +45,12 @@ export default class EventFormComponent {
         }
     }
 
+    removeParticipant ($index, $event) {
+        $event.preventDefault();
+
+        this.participants.splice($index, 1);
+    }
+
     addReminder ($event) {
         this.reminders.push({
             type: 'mm',
@@ -52,10 +58,10 @@ export default class EventFormComponent {
         });
     }
 
-    removeParticipant ($index, $event) {
+    removeReminder ($index, $event) {
         $event.preventDefault();
 
-        this.participants.splice($index, 1);
+        this.reminders.splice($index, 1);
     }
 
     onSubmit (event) {

@@ -34,6 +34,16 @@ export default class EventNewComponent {
                     .local().toJSON()
             },
             attendees: event.participants.map(value => ({ email: value })),
+            reminders: {
+                'useDefault': false,
+                'overrides': event.reminders.map((reminder) => {
+                    let mult = this._calendarService.multipliers[reminder.type];
+                    return {
+                        method: 'email',
+                        minutes: reminder.quantity * mult
+                    }
+                })
+            }
         }).then(() => {
         });
     }
