@@ -25,11 +25,15 @@
             </div>
             <div class="form__group">
                 <label for="description" class="form__label">Description</label>
-                <textarea name="description" class="textarea"></textarea>
+                <textarea name="description" class="textarea" id="description"
+                          #description="ngForm"
+                          [ngFormControl]="eventForm.controls['description']"></textarea>
             </div>
             <div class="form__group">
                 <label for="place" class="form__label">Place</label>
-                <input type="text" name="place" class="input" />
+                <input type="text" name="place" class="input" id="place"
+                       #place="ngForm"
+                       [ngFormControl]="eventForm.controls['place']" />
             </div>
         </div>
         <div class="form__part">

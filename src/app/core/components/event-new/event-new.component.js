@@ -17,14 +17,7 @@ export default class EventNewComponent {
   }
 
   onSave(event) {
-    console.log(event);
-    //this._calendarService.addPost(post).subscribe(
-    //  () => {
-    //    this._router.navigate(['Calendar']);
-    //  },
-    //  (error) => {
-    //    console.error(error);
-    //  }
-    //);
+    console.log('BAZINGA', event);
+    this._calendarService.createEvent(event).then(() => {});
   }
 }

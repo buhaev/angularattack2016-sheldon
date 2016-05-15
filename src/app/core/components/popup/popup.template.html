@@ -2,5 +2,5 @@
 <div class="popup__content">
     <div class="popup__title">{{ title }}</div>
 
-    <ng-content></ng-content>
+    <event-new [onSuccess]="togglePopup"></event-new>
 </div>

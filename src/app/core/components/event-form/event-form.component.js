@@ -5,8 +5,7 @@ import template from './event-form.template.html';
 
 @Component({
     template,
-    selector: 'event-form',
-    inputs: ['onSuccess'],
+    selector: 'event-form'
 })
 
 export default class EventFormComponent {
@@ -16,7 +15,9 @@ export default class EventFormComponent {
 
     constructor (builder: FormBuilder) {
         this.eventForm = builder.group({
-            summary: ['']
+            summary: [''],
+            place: [''],
+            description: ['']
         });
     }
 
@@ -24,16 +25,8 @@ export default class EventFormComponent {
         console.log(123);
     }
 
-    onSave (event) {
-        console.log('onSave', event);
-        //event.preventDefault();
-
-        //this.onSuccess();
-    }
-
     onSubmit(event) {
-        console.log('BAZINGA', event);
-        //this.saved.emit(event);
+        this.saved.emit(event);
     }
 
     onCancel = () => {

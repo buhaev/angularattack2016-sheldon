@@ -42,47 +42,41 @@ export class CalendarService {
         return day === 0 || day === 6;
     }
 
-    createEvent ({summary, location, description, remind}) {
+    @loggedIn
+    createEvent ({summary, location, description}, gapi) {
         var event = {
             summary,
             location,
             description,
-            'start': {
-                'dateTime': '2015-05-28T09:00:00-07:00',
-                'timeZone': 'America/Los_Angeles'
+            start: {
+                dateTime: '2015-05-28T09:00:00-07:00',
+                timeZone: 'America/Los_Angeles'
             },
-            'end': {
-                'dateTime': '2015-05-28T17:00:00-07:00',
-                'timeZone': 'America/Los_Angeles'
+            end: {
+                dateTime: '2015-05-28T17:00:00-07:00',
+                timeZone: 'America/Los_Angeles'
             },
-            'recurrence': [
-                'RRULE:FREQ=DAILY;COUNT=2'
-            ],
-            'attendees': [
-                { 'email': 'lpage@example.com' },
-                { 'email': 'sbrin@example.com' }
-            ],
-            'reminders': {
-                'useDefault': false,
-                'overrides': [
-                    { 'method': 'email', 'minutes': 24 * 60 },
-                    { 'method': 'popup', 'minutes': 10 }
-                ]
-            }
+            //'attendees': [
+            //    { 'email': 'lpage@example.com' },
+            //    { 'email': 'sbrin@example.com' }
+            //],
+            //'reminders': {
+            //    'useDefault': false,
+            //    'overrides': [
+            //        { 'method': 'email', 'minutes': 24 * 60 },
+            //        { 'method': 'popup', 'minutes': 10 }
+            //    ]
+            //}
         };
-        var promise = new Promise();
+        return new Promise(resolve => {
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': event
+            });
 
-        if (remind) {
-            event.reminders = {}
-        }
-
-        var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': event
-        });
-
-        request.execute(function (event) {
-            promise.resolve(event);
+            request.execute(function (event) {
+                resolve(event);
+            });
         });
     }
 
@@ -99,7 +93,6 @@ export class CalendarService {
 
         return new Promise((resolve, reject) => {
             request.execute((resp) => {
-                console.log(resp.items);
                 resolve(resp.items);
 
                 this.remoteEvents.next(resp.items);
