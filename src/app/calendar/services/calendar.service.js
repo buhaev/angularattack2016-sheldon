@@ -9,11 +9,14 @@ require('moment-range');
 @Injectable()
 export class CalendarService {
     remoteEvents = new BehaviorSubject([]);
+    calendars = new BehaviorSubject([]);
 
     constructor (userService:UserService, @Inject('googleApi') googleApi, applicationRef:ApplicationRef) {
         this._googleApi = googleApi;
         this._userService = userService;
         this._applicationRef = applicationRef;
+
+        this._calendarsCache = null;
     }
 
     getRange(month, year) {
@@ -76,6 +79,31 @@ export class CalendarService {
                 resolve(event);
             });
         });
+    }
+
+    @loggedIn
+    listCalendars (gapi) {
+        if (this._calendarsCache) {
+            return this._calendarsCache;
+        }
+
+        var request = gapi.client.calendar.calendarList.list({
+
+        });
+
+        this._calendarsCache = new Promise((resolve, reject) => {
+            request.execute((resp) => {
+                this.calendars.next(resp.items);
+
+                resolve(resp.items);
+            })
+        });
+
+        return this._calendarsCache;
+    }
+    
+    getCalendars () {
+        return this.calendars;
     }
 
     @loggedIn

@@ -5,9 +5,11 @@ require('moment-range');
 import template from './calendar.template.html';
 
 import {MdButton} from '@angular2-material/button';
+import {MdList} from '@angular2-material/list';
 import { CalendarService } from '../../services/calendar.service';
 import { UserService } from '../../../auth';
 import PopupComponent from '../popup/popup.component';
+import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
 
 
 const DATE_FORMAT = 'YYYY-MM-DD';
@@ -16,7 +18,7 @@ const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ssZZ';
 @Component({
     selector: 'calendar',
     template: template,
-    directives: [MdButton, PopupComponent],
+    directives: [MdButton, PopupComponent, MdList, DROPDOWN_DIRECTIVES],
     inputs: ['toggleNewEvent']
 })
 export class CalendarComponent {
@@ -38,10 +40,16 @@ export class CalendarComponent {
 
         this.calendarService = calendarService;
         this.loadEvents();
+
+        calendarService.listCalendars();    
     }
 
     getLoggedIn() {
         return this.userService.getLoggedIn();
+    }
+    
+    getCalendars() {
+        return this.calendarService.getCalendars().getValue();
     }
 
     nextMonth() {

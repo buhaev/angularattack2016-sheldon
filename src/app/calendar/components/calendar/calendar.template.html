@@ -12,11 +12,20 @@
                 </div>
                 <div class="col-xs-4" style="text-align: right;">
                     <button md-raised-button (click)="toggleNewEvent()" color="primary">New event</button>
+                    <!--<span dropdown>-->
+                        <!--<button md-button dropdownToggle>Settings</button>-->
+                        <!--<ul class="dropdown-menu" style="right: 0; left: auto;">-->
+                            <!--<li *ngFor="let calendar of getCalendars()">-->
+                                <!--<a class="dropdown-item" href="javascript:void(0);">{{ calendar.summary }}</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</span>-->
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid">
+
         <div class="calendar__body">
             <div *ngFor="let day of days" class="calendar__day"
                  [class.calendar__day_current]="day.isCurrent"
