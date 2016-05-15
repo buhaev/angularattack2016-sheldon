@@ -20,7 +20,7 @@ export default class EventNewComponent {
     }
 
     onSave (event) {
-        var dateFormat = 'dd/mm/yyy HH:mm';
+        var dateFormat = 'YYYY-MM-DD HH:mm';
 
         this._calendarService.createEvent({
             summary: event.summary,
