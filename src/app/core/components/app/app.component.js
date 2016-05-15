@@ -5,10 +5,11 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import template from './app.template.html';
 import {MenuComponent} from '../menu/menu.component';
 import {AppLoaderComponent} from '../app-loader/app-loader.component';
-import PopupComponent from '../popup/popup.component';
-import EventFormComponent from '../event-form/event-form.component';
-import EventNewComponent from '../event-new/event-new.component';
+import PopupComponent from '../../../calendar/components/popup/popup.component';
+import EventFormComponent from '../../../calendar/components/event-form/event-form.component';
+import EventNewComponent from '../../../calendar/components/event-new/event-new.component';
 import {LoggedInRouterOutletDirective, UserService} from '../../../auth';
+import {LoginComponent} from '../../../auth/components/login/login.component';
 import {routes} from './router.config';
 
 import {MdButton} from '@angular2-material/button';
@@ -30,24 +31,22 @@ import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
     directives: [
         LoggedInRouterOutletDirective, MenuComponent, AppLoaderComponent, MdButton, MdCard, MdCheckbox, MdIcon, MdInput,
         MdList, MdProgressBar, MdProgressCircle, MdRadioButton, MdSidenav, MdToolbar, DROPDOWN_DIRECTIVES,
-        PopupComponent, EventFormComponent, EventNewComponent
+        LoginComponent, PopupComponent, EventFormComponent, EventNewComponent
     ],
     template: template
 })
 @RouteConfig(routes)
 export class AppComponent {
-    constructor(@Inject('ENVIRONMENT') environment, userService:UserService) {
+    constructor (@Inject('ENVIRONMENT') environment, userService:UserService) {
         this.environment = environment;
         this._userService = userService;
-
-        this.newEventPopupVisible = false;
     }
 
-    getLoaded() {
+    getLoaded () {
         return this._userService.getLoginChecked();
     }
 
-    toggleNewEvent = () => {
-        this.newEventPopupVisible = !this.newEventPopupVisible;
+    getLoggedIn () {
+        return this._userService.getLoggedIn();
     }
 }

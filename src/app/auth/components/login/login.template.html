@@ -1,5 +1,13 @@
-<div class="row">
-    <div class="col-sm-12">
-        <button type="button" (click)="authLogin()" class="btn btn-primary">Login with Google</button>
-    </div>
+<div class="login__container">
+    <h1 class="login__header">Sheldon Calendar (Angular Attack 2016)</h1>
+    <h2 class="login__subheader">Almost fully featured Google Calendar Integration App</h2>
+
+    <button md-raised-button (click)="authLogin()" color="primary">Login with Google</button>
+
+    <ul class="feature-list">
+        <li class="feature-list__item">Backendless (uses Google Javascript API library)</li>
+        <li class="feature-list__item">Supports view of different event types (recurrent, >1 day long) better than native Google Calendar</li>
+        <li class="feature-list__item">Simple and easy to use</li>
+        <li class="feature-list__item">Written in Angular 2 ;-)</li>
+    </ul>
 </div>

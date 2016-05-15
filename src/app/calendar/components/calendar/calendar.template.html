@@ -1,16 +1,17 @@
-<div class="calendar">
+<div class="calendar" *ngIf="(getLoggedIn() | async)">
     <div class="container-fluid">
         <div class="row">
             <div class="calendar__header">
                 <div class="col-xs-4">
                     <button md-button (click)="prevMonth()">←</button>
+                    <button md-button (click)="today()">Today</button>
                     <button md-button (click)="nextMonth()">→</button>
                 </div>
                 <div class="col-xs-4">
                     <div class="calendar__title">{{ title }}</div>
                 </div>
-                <div class="col-xs-4">
-
+                <div class="col-xs-4" style="text-align: right;">
+                    <button md-raised-button (click)="toggleNewEvent()" color="primary">New event</button>
                 </div>
             </div>
         </div>
@@ -37,3 +38,8 @@
         </div>
     </div>
 </div>
+
+<popup class="popup"
+       [ngClass]="{popup_visible: newEventPopupVisible}"
+       [togglePopup]="toggleNewEvent">
+</popup>

@@ -5,23 +5,24 @@ require('moment-range');
 import template from './calendar.template.html';
 
 import {MdButton} from '@angular2-material/button';
-import { CalendarService } from '../services/calendar.service';
+import { CalendarService } from '../../services/calendar.service';
+import { UserService } from '../../../auth';
+import PopupComponent from '../popup/popup.component';
+
 
 const DATE_FORMAT = 'YYYY-MM-DD';
-const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss+-HH:mm';
+const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ssZZ';
 
 @Component({
     selector: 'calendar',
     template: template,
-    directives: [MdButton]
+    directives: [MdButton, PopupComponent],
+    inputs: ['toggleNewEvent']
 })
 export class CalendarComponent {
-    constructor(calendarService: CalendarService) {
-        this.now = moment();
-        this.state = {
-            month: this.now.month(),
-            year: this.now.year()
-        };
+    constructor(calendarService: CalendarService, userService: UserService) {
+        this.userService = userService;
+        this.state = moment();
 
         this.maxWidths = { // dumb but work
             0: 1,
@@ -33,27 +34,36 @@ export class CalendarComponent {
             6: 2
         };
 
+        this.newEventPopupVisible = false;
+
         this.calendarService = calendarService;
-        this.days = this.calendarService.getRange();
         this.loadEvents();
     }
 
+    getLoggedIn() {
+        return this.userService.getLoggedIn();
+    }
+
     nextMonth() {
-        this.state.month += 1;
-        this.days = this.calendarService.getRange(this.state.month, this.state.year);
+        this.state.add(1, 'month');
         this.loadEvents();
     }
 
     prevMonth() {
-        this.state.month -= 1;
-        this.days = this.calendarService.getRange(this.state.month, this.state.year);
+        this.state.subtract(1, 'month');
+        this.loadEvents();
+    }
+
+    today() {
+        this.state = moment();
         this.loadEvents();
     }
 
     loadEvents() {
+        this.days = this.calendarService.getRange(this.state.month(), this.state.year());
+        this.title = this.state.format("MMMM YYYY");
         this.calendarService.listUpcomingEvents({from: this.days[0].value.format(),
             to: this.days[this.days.length -1 ].value.format()}).then((results) => {
-            //console.log(results);
             results.forEach((event) => {
                 let start = event.start.dateTime ? moment(event.start.dateTime, DATETIME_FORMAT) :
                     moment(event.start.date, DATE_FORMAT);
@@ -62,14 +72,12 @@ export class CalendarComponent {
 
                 let allDay = Boolean(event.start.date || event.end.date);
 
-
                 event.sheldon = {
                     start: start,
                     end: end,
                     allDay: allDay
                 };
 
-                // console.log(start, end, allDay);
                 this.days.forEach((day) => {
                     if (day.value.isBetween(start, end, 'day', '[' + (allDay ? ')' : ']'))) {
                         day.events.push(event);
@@ -98,8 +106,6 @@ export class CalendarComponent {
                     }
                 });
             });
-
-            console.log(this.days);
         });
     }
 
@@ -117,7 +123,7 @@ export class CalendarComponent {
     }
 
     getSummary(day, event) {
-        let title = (!event.sheldon.allDay ? event.sheldon.start.format('HH:mm') + ' ' : '') + (event.summary || '(No name)');
+        let title = (!event.sheldon.allDay ? (event.sheldon.start.format('HH:mm') + ' ') : '') + (event.summary || '(No name)');
         if (day.value.isSame(event.sheldon.start, 'day')) {
             return title;
         } else if (day.startOfWeek) {
@@ -136,5 +142,9 @@ export class CalendarComponent {
 
     showEvent(day, event) {
         console.log(event);
+    }
+
+    toggleNewEvent = () => {
+        this.newEventPopupVisible = !this.newEventPopupVisible;
     }
 }
