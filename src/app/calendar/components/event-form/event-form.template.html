@@ -20,12 +20,12 @@
                 <div class="form__group">
                     <label for="startTime" class="form__label">Time</label>
                     <div class="form__group">
-                        <input type="text" name="start" class="input input_small"
+                        <input type="time" name="start" class="input input_small"
                                id="startTime"
                                #startTime="ngForm"
                                [ngFormControl]="eventForm.controls['startTime']" />
                         <span class="form__minus">—</span>
-                        <input type="text" name="finish" class="input input_small"
+                        <input type="time" name="finish" class="input input_small"
                                #endTime="ngForm"
                                [ngFormControl]="eventForm.controls['endTime']" />
                     </div>
@@ -47,13 +47,15 @@
         <div class="form__part">
             <div class="form__group">
                 <label for="participants" class="form__label">Participants</label>
-                <div class="participants">
-                    <div *ngFor="let participant of participants; let $i = index">
-                        {{ participant }}
-                        <a href="#" (click)="removeParticipant($i, $event)">remove</a>
-                    </div>
-                </div>
-                <input type="text" name="participants" class="input" id="participants"
+                <ul class="participants">
+                    <li *ngFor="let participant of participants; let $i = index"
+                        class="participants__item">
+                        <a href="javascript:void(0);"
+                           class="participants__remove" (click)="removeParticipant($i, $event)"></a>
+                        <span class="participants__text">{{ participant }}</span>
+                    </li>
+                </ul>
+                <input type="email" placeholder="Add participant" name="participants" class="input" id="participants"
                        (keyup)="addParticipant($event)"
                 />
             </div>

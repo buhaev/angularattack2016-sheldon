@@ -146,6 +146,9 @@ export class CalendarComponent {
     calculatezIndex(day, event) {
         if (day.value.isSame(event.sheldon.start, 'day')) {
             return event.sheldon.end.diff(day.value, 'days') + (!event.sheldon.allDay ? 1 : 0);
+        } else if (day.startOfWeek) {
+            let value = event.sheldon.end.diff(day.value, 'days') + (!event.sheldon.allDay ? 1 : 0);
+            return Math.min(this.maxWidths[day.value.day()], value);
         }
         return 1;
     }
