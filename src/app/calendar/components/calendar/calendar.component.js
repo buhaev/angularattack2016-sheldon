@@ -10,7 +10,7 @@ import { CalendarService } from '../../services/calendar.service';
 import { UserService } from '../../../auth';
 import PopupComponent from '../popup/popup.component';
 import {DROPDOWN_DIRECTIVES} from 'ng2-bootstrap/components/dropdown';
-
+import { find } from 'lodash';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ssZZ';
@@ -70,6 +70,7 @@ export class CalendarComponent {
     loadEvents() {
         this.days = this.calendarService.getRange(this.state.month(), this.state.year());
         this.title = this.state.format("MMMM YYYY");
+        // this.calendarService.listCalendars().then((calendars) => {
         this.calendarService.listUpcomingEvents({from: this.days[0].value.format(),
             to: this.days[this.days.length -1 ].value.format()}).then((results) => {
             results.forEach((event) => {
@@ -115,6 +116,7 @@ export class CalendarComponent {
                 });
             });
         });
+        // });
     }
 
     calculateWidth(day, event) {
@@ -149,7 +151,15 @@ export class CalendarComponent {
     }
 
     showEvent(day, event) {
-        console.log(event);
+        let selected = find(this.calendarService.remoteEvents.getValue(), (event) => {
+            return event.selected;
+        });
+
+        if (selected) {
+            selected.selected = false;
+        }
+
+        event.selected = true;
     }
 
     toggleNewEvent = () => {
